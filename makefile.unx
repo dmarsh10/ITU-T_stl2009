@@ -208,7 +208,9 @@ unsup:  binUnix $(BIN)/add $(BIN)/asc2bin $(BIN)/astrip $(BIN)/bin2asc \
 	$(BIN)/chr2sh $(BIN)/cf $(BIN)/concat $(BIN)/crc $(BIN)/df \
 	$(BIN)/endian $(BIN)/fdelay $(BIN)/measure $(BIN)/oper $(BIN)/sb \
 	$(BIN)/sh2chr $(BIN)/sine $(BIN)/sub $(BIN)/xdecode \
-	$(BIN)/xencode $(BIN)/g729e_convert_synch $(BIN)/swapover clearunsup
+	$(BIN)/xencode  $(BIN)/swapover clearunsup
+#$(BIN)/g729e_convert_synch is missing in STL2010. Might be removed during transition frmo STL2006 to 2010.
+
 $(BIN)/add:
 	cd unsup; $(MK) ;     $(CMD) add$(EXE) ../$(BIN)
 $(BIN)/asc2bin:
