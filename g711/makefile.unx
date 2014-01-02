@@ -60,7 +60,7 @@ cleantest:
 	$(RM) $(TEST_VECTORS) $(REF_VECTORS) 
 
 veryclean: clean cleantest
-	$(RM) g711demo.exe
+	$(RM) g711demo
 
 # ------------------------------------------------
 # Specific rules

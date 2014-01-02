@@ -1,0 +1,109 @@
+#(c) Dennis Guse, 2014
+# File is missing in STL2010
+# -----------------------------------------------------------------------------
+#
+# Packet Loss Concealment code for G.711 Appendix I
+# Copyright (c) 1997-2000 AT&T Corp.
+# All rights reserved.
+# 
+.SUFFIXES: .o .c .cc
+
+# ------------------------------------------------
+# Choose compiler and options.
+# ------------------------------------------------
+GCC = gcc -fno-builtin -Wall 
+CFLAGS= -I../utl
+
+# ------------------------------------
+#  Lists of files
+# ------------------------------------
+OFILESC=g711iplc.o lowcfe.o plcferio.o softbit.o error.o
+OAF= asc2g192.o error.o softbit.o
+
+ALL=g711iplc asc2g192
+
+# ------------------------------------------------
+# Choose a file comparison utility:
+#       - cf compares,
+#       - sub shows the difference of the different samples
+# Default is cf.
+# ------------------------------------------------
+DIFF = cf -q
+
+# ------------------------------------------------
+# Choose an archiving utility: 
+#       - public domain unzip, or [PC/MS Visual C/VMS]
+#       - shareware pkunzip [PC only]
+# ------------------------------------------------
+#UNZIP = pkunzip
+UNZIP = unzip -o
+
+# ------------------------------------------------
+# Generic rules
+# ------------------------------------------------
+
+.c.o:
+	$(CC) $(CFLAGS) -c $<
+
+# ------------------------------------
+# Targets
+# ------------------------------------
+all: $(ALL)
+
+clean:
+	rm -f *.obj
+
+cleantest:
+	rm -f *.raw
+	rm -f *.g192
+	rm -f *.le
+
+veryclean: clean cleantest
+	rm -f $(CTARG)
+
+# ------------------------------------
+# Dependencies and rules
+# ------------------------------------
+g711iplc: $(OFILESC)
+	$(CC) $(CFLAGS) -Fe$(*B).exe -Fd$(*B).pdb $(OFILESC)
+asc2g192: $(OAF)
+	$(CC) $(CFLAGS) -Fe$(*B).exe -Fd$(*B).pdb $(OAF)
+
+softbit.obj: ../eid/softbit.c
+	$(CC) $(CFLAGS) -c -o softbit.obj ../eid/softbit.c
+
+# -----------------------------------------
+# Test implementation with provided script
+# -----------------------------------------
+#test: $(ALL)
+#	testit.bat
+
+# ------------------------------------------------
+# Test portability
+# ------------------------------------------------
+test: proc comp
+
+proc: fe10.g192
+	g711iplc -stats fe10.g192 f2.le f2_10_c.raw
+	g711iplc -noplc -stats fe10.g192 f2.le f2_10m_c.raw
+	g711iplc -stats fe10_2.g192 f2.le f2_10_2_c.raw
+	g711iplc -noplc -stats fe10_2.g192 f2.le f2_10_2m_c.raw
+
+comp: f2_10.raw
+	$(DIFF) f2_10.raw f2_10_c.raw
+	$(DIFF) f2_10m.raw f2_10m_c.raw
+	$(DIFF) f2_10_2.raw f2_10_2_c.raw
+	$(DIFF) f2_10_2m.raw f2_10_2m_c.raw
+
+# ------------------------------------------------
+# Extract from archive, if necessary
+# ------------------------------------------------
+fe10.g192:	tst-g711iplc.zip
+	$(UNZIP) tst-g711iplc.zip *.g192
+	swapover *.g192
+	$(UNZIP) tst-g711iplc.zip f2.le
+	swapover f2.le
+
+f2_10.raw:	tst-g711iplc.zip
+	$(UNZIP) tst-g711iplc.zip f2_10.raw f2_10_2.raw f2_10_2m.raw f2_10m.raw
+	swapover f2_10.raw f2_10_2.raw f2_10_2m.raw f2_10m.raw

@@ -1,0 +1,1 @@
+Copy of Recommendation G.191 (03/10) (http://www.itu.int/rec/T-REC-G.191-201003-I/en).
