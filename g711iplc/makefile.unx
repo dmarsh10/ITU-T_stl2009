@@ -12,7 +12,7 @@
 # Choose compiler and options.
 # ------------------------------------------------
 GCC = gcc -fno-builtin -Wall 
-CFLAGS= -I../utl
+CFLAGS= -I../utl -I../eid
 
 # ------------------------------------
 #  Lists of files
@@ -51,7 +51,7 @@ UNZIP = unzip -o
 all: $(ALL)
 
 clean:
-	rm -f *.obj
+	rm -f *.o
 
 cleantest:
 	rm -f *.raw
@@ -65,12 +65,12 @@ veryclean: clean cleantest
 # Dependencies and rules
 # ------------------------------------
 g711iplc: $(OFILESC)
-	$(CC) $(CFLAGS) -Fe$(*B).exe -Fd$(*B).pdb $(OFILESC)
+	$(CC) -o $@ $(CFLAGS) $(OFILESC) -lm
 asc2g192: $(OAF)
-	$(CC) $(CFLAGS) -Fe$(*B).exe -Fd$(*B).pdb $(OAF)
+	$(CC) -o $@ $(CFLAGS) $(OAF) -lm
 
-softbit.obj: ../eid/softbit.c
-	$(CC) $(CFLAGS) -c -o softbit.obj ../eid/softbit.c
+softbit.o: ../eid/softbit.c
+	$(CC) $(CFLAGS) -c -o softbit.o ../eid/softbit.c
 
 # -----------------------------------------
 # Test implementation with provided script

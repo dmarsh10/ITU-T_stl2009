@@ -15,7 +15,7 @@ AWK_CMD = '$$6~/[0-9]+:[0-9][0-9]/ {print "sb -over",$$NF};END{print "exit"}'
 # Choose compiler. Sun: use cc. HP: gotta use gcc make ... CC=\$\(GCC\)
 # ----------------------------------------------------------------------
 GCC = gcc -fno-builtin -Wall
-CC_OPT = -I../utl
+CFLAGS = -I../utl
 
 # ------------------------------------------------
 # Choose an archiving utility: 
@@ -44,7 +44,7 @@ G711_OBJ = g711.o g711demo.o
 # Generic rules
 # ------------------------------------------------
 .c.o:
-	$(CC) $(CC_OPT) -c $<
+	$(CC) $(CFLAGS) -c $<
 
 # ------------------------------------------------
 # Targets
