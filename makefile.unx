@@ -264,7 +264,7 @@ test: test-eid
 	cd g726      ; $(MK) test > $(LOG) 2>&1 ; cd ..
 	cd g727      ; $(MK) test > $(LOG) 2>&1 ; cd ..
 	cd iir       ; $(MK) test > $(LOG) 2>&1 ; cd ..
-	cd is54/binUnix  ; $(MK) test > $(LOG) 2>&1 ; cd ..
+	cd is54  ; $(MK) test > $(LOG) 2>&1 ; cd ..
 	cd mnru      ; $(MK) test > $(LOG) 2>&1 ; cd ..
 	cd rpeltp/ts ; $(MK) test > $(LOG) 2>&1 ; cd ..
 	cd sv56      ; $(MK) test > $(LOG) 2>&1 ; cd ..
@@ -305,7 +305,7 @@ cleantest:
 	cd g726      ; $(MK) cleantest ; cd ..
 	cd g727      ; $(MK) cleantest ; cd ..
 	cd iir       ; $(MK) cleantest ; cd ..
-	cd is54/binUnix  ; $(MK) cleantest ; cd ..
+	cd is54      ; $(MK) cleantest ; cd ..
 	cd mnru      ; $(MK) cleantest ; cd ..
 	cd rpeltp/ts ; $(MK) cleantest ; cd ..
 	cd sv56      ; $(MK) cleantest ; cd ..
@@ -339,7 +339,7 @@ checklogs:
 	grep -i diff g726/$(LOG) | less
 	grep -i diff g727/$(LOG) | less
 	gawk -f fir/chk-log.awk iir/$(LOG) | grep '\*' ; pause
-	grep -i diff is54/binUnix/$(LOG) | less
+	grep -i diff is54/$(LOG) | less
 	grep -i diff mnru/$(LOG) | less
 	grep -i diff rpeltp/ts/$(LOG) | less
 	less sv56/$(LOG)
