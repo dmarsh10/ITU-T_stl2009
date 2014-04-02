@@ -1,0 +1,15 @@
+Source: itu-t-stl
+Priority: extra
+Maintainer: Dennis Guse <dennis.guse@alumni.tu-berlin.de>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.4
+Section: unknown
+Homepage: http://www.itu.int/rec/T-REC-G.191/en
+Vcs-Git: https://github.com/dennisguse/ITU-T_stl2009/
+
+Package: itu-t-stl
+Section: unknown
+Architecture: any
+Depends: libc
+Description: ITU-T Software Tool Library
+ The ITU-T Software Tool Library from 2009 as specified in ITU-T G.191.

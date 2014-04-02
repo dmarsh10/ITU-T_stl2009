@@ -1,0 +1,12 @@
+#!/usr/bin/make -f
+
+#export DH_VERBOSE=1
+
+%:
+	dh $@  --with autotools-dev
+
+override_dh_auto_build:
+	make -f makefile.unx "all"
+	
+override_dh_install:
+	cp -a -r $(CURDIR)/binUnix/*/* $(CURDIR)/debian/tmp/usr/bin/
