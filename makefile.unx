@@ -322,7 +322,6 @@ veryclean:
 	cd g727      ; $(MK) veryclean ; cd ..
 	cd iir       ; $(MK) veryclean ; cd ..
 	cd is54      ; $(MK) veryclean ; cd ..
-	cd is54/binUnix  ; $(MK) veryclean ; cd ..
 	cd mnru      ; $(MK) veryclean ; cd ..
 	cd rpeltp    ; $(MK) veryclean ; cd ..
 	cd rpeltp/ts ; $(MK) veryclean ; cd ..
