@@ -1,4 +1,4 @@
-itu-t-stl (2009+SNAPSHOT1) saucy; urgency=low
+itu-t-stl (2009+SNAPSHOT1) trusty; urgency=low
 
    * Original implementation.
    * Fixed linux build scripts.
