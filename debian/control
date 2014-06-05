@@ -1,14 +1,14 @@
 Source: itu-t-stl
 Priority: extra
 Maintainer: Dennis Guse <dennis.guse@alumni.tu-berlin.de>
-Build-Depends: debhelper (>= 8.0.0)
+Build-Depends: debhelper (>= 8.0.0), autotools-dev
 Standards-Version: 3.9.4
-Section: unknown
+Section: science
 Homepage: http://www.itu.int/rec/T-REC-G.191/en
 Vcs-Git: https://github.com/dennisguse/ITU-T_stl2009/
 
 Package: itu-t-stl
-Section: unknown
+Section: science
 Architecture: any
 Depends: libc
 Description: ITU-T Software Tool Library
